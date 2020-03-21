@@ -1,0 +1,8 @@
+adder,an electronic circuit that performs an addition operation on binary values
+addressability,the number of bits stored in each addressable location in memory
+bit,short for binary digit
+block,a logical group of zero or more program statements
+call,the point at which the computer begins following the instructions in a subprogram
+compiler,a program that translates a high-level program into machine code
+data,information in a form a computer can use
+database,a structured set of data

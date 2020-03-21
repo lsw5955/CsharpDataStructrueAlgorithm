@@ -1,0 +1,3 @@
+int a = 15;
+float b = 1.5f;
+string c = "abc";

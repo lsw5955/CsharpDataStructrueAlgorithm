@@ -1,0 +1,7 @@
+G:\U3d\C#\chapter1\chapter11\bin\Debug\chapter11.exe.config
+G:\U3d\C#\chapter1\chapter11\bin\Debug\chapter11.exe
+G:\U3d\C#\chapter1\chapter11\bin\Debug\chapter11.pdb
+G:\U3d\C#\chapter1\chapter11\obj\Debug\chapter11.csprojAssemblyReference.cache
+G:\U3d\C#\chapter1\chapter11\obj\Debug\chapter11.csproj.CoreCompileInputs.cache
+G:\U3d\C#\chapter1\chapter11\obj\Debug\chapter11.exe
+G:\U3d\C#\chapter1\chapter11\obj\Debug\chapter11.pdb
