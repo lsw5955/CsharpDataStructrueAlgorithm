@@ -7,18 +7,8 @@ using System.Threading.Tasks;
 class Program {
     static void Main()
     {
-        Exercise3BST nums = new Exercise3BST();
-        nums.InsertFromFile("Test.txt");
-        Console.WriteLine($"{nums.root.Data}是根节点, 先序遍历节点顺序 : ");
-        nums.InOrder(nums.root);
-        while (true) {
-            Console.WriteLine();
-            Console.Write($"请输入要搜索的数字节点 : ");
-            string Data = Console.ReadLine();
-            nums.Exercise1(Data, 0);
-            nums.Exercise1(Data, 1);
-            nums.Exercise1(Data, 2);
-        }
+        Exercise4 e4 = new Exercise4();
+
 
         //List<int> l = new List<int>();
         //int randomIndex = 0;

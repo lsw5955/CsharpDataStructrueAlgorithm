@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 
-namespace chapter1 {
+
     //用于进行基于线程的代码执行计时
     public class Timing {
         //记录开始时间
@@ -35,4 +35,3 @@ namespace chapter1 {
             return duration;
         }
     }
-}
