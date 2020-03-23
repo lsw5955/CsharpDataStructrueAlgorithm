@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 public class Exercise4Node {
     public string Data;
@@ -26,18 +22,35 @@ public class Exercise4Node {
 //两个节点都是叶子的运算符最先计算, 构建二叉树时需要让优先级高的运算符满足这一点
 class Exercise4 {
     Regex reg;
+    //存储计算结果
+    float expResult;
     public Exercise4Node root;
+
+    //Main函数中直接调用它就可以了
+    float Calculation()
+    {
+        expResult = PostOrderCalculator(root);
+        Console.WriteLine();
+        return expResult;
+    }
 
     public Exercise4()
     {
         root = null;
-        Console.WriteLine("请输入数学表达式, 只支持加减乘除, 支持括号, 注意不要带空格 :");
+    }
+
+    public void CalculateExp()
+    {
+        Console.WriteLine();
+        Console.WriteLine("请输入数学表达式, 只支持加减乘除, 支持括号, 注意不要带空格, 也不要除0:");
         ArrayList expList = new ArrayList();
         Expression2Array(expList, Console.ReadLine());
-        foreach (object item in expList) {
-            Console.WriteLine(item);
-        }
+        //foreach (object item in expList) {
+        //    Console.Write(item);
+        //}
         InsertFromList(expList);
+        //通过输出, 惊奇的发现我无意中实现了中缀表达式转后缀表达式...
+        Console.WriteLine("结算结果是 :" + Calculation());
     }
 
     void InsertFromList(ArrayList expList)
@@ -53,18 +66,20 @@ class Exercise4 {
         reg = new Regex("^[0-9]\\.*[0-9]*$");
         //标记当前最后一个加到二叉树中的算数符号节点
         Exercise4Node current = root;
-        //标记当前上一个加入到二叉树中的算数符号节点
-        Exercise4Node currentParent = null;
+        //顾名思义, 记录current的父节点
+        Exercise4Node currentParent = current;
+        //存储每次遍历到的公式片段字符串
+        string nextPart = "";
         foreach (object item in expList) {
+            nextPart = item.ToString();
             //如果是数字, 插到最后加入的符号节点右侧
-            if (reg.IsMatch(item.ToString())) {
-                current.Right = new Exercise4Node(item.ToString());
-                current = current.Right;
+            if (reg.IsMatch(nextPart)) {
+                current.Right = new Exercise4Node(nextPart.ToString());
             }
-            //item不是数字, 就一定是符号了
+            //nextPart不是数字, 就一定是符号了
             else {
-                //1+(2+(3+4)+5)+6
-                /*
+                //1+((2+(3+4)+5)+6)
+                /*简陋的草稿
                                           +
                                 +                   6
                            1         +
@@ -73,27 +88,45 @@ class Exercise4 {
                                    3 4
 
                  */
-                //如果最后一次加入的符号的优先级大于等于item所代表的符号的优先级, 则CompareSymbol方法返回true
-                if (CompareSymbol(currentParent.Data, item.ToString())) {
-                    //二叉树完成之后的公式计算要由底层向高层, 由左至右计算, 所以生成树的时候, 计算优先级低的符号节点, 会成为它相邻的, 优先级大于等于, 需要在, 越靠优先级高的符号节点会成为优先级低的符号节点的子节点, 而且是左子节点
-                    //lastSymbol是null说明current是根节点
-                    if(currentParent == null) {
-                        //新增符号节点作为根节点
-                        root = new Exercise4Node(item.ToString());
-                        //原根节点设置新符号根节点的左子节点
-                        root.Left = current;
-                        current = root;
+                //二叉树完成之后的公式计算要由底层向高层, 由左至右计算, 
+                //所以生成树的时候, 会让计算优先级低的符号节点, 成为比它优先级高的符号节点的父节点或祖先节点,
+                //CompareSymbol方法返回true表示左侧符号参数的计算优先级大于右侧符号参数
+                if (CompareSymbol(current.Data, nextPart)) {
+                    //如果nextPart的符号优先级小于最后一次插入的符号节点, 需要将nextPart节点插入root到current的路径中第一个优先级大于nextPart的节点之上
+                    //而且要将这个找到的节点设置为nextPart的左子节点
+
+                    //跟节点单独处理, 如果根节点符号优先级大于nextPart,nextPart作为新的根节点, 原根节点作为其左子节点
+                    if (CompareSymbol(root.Data, nextPart)) {
+                        current = new Exercise4Node(nextPart);
+                        current.Left = root;
+                        root = current;
+                    }
+                    //上个加入的符号节点不是根节点的话, 就从根节点开始遍历最右侧子节点, 找到第一个优先级高于nextPart的符号节点并将nextPart设置为它的父节点
+                    else {
+                        //其实找到的currentParent是目标节点的父节点, 方便进行节点替换
+                        currentParent = root;
+                        while (!CompareSymbol(currentParent.Right.Data, nextPart)) {
+                            currentParent = currentParent.Right;
+                        }
+                        current = new Exercise4Node(nextPart);
+                        current.Left = currentParent.Right;
+                        currentParent.Right = current;
                     }
                 }
+                //如果最后一次加入的符号的优先级小于nextPart所代表的符号的优先级, 
+                //那么就将其新增符号节点作为上一次加入的符号节点的右子节点, 并将其原右子节点作为新增节点的左子节点
                 else {
-
+                    currentParent = current;
+                    current = new Exercise4Node(nextPart);
+                    current.Left = currentParent.Right;
+                    currentParent.Right = current;
                 }
             }
         }
     }
 
     //处理符号, 判断符号s1的计算优先级是否高于s2
-    //大于为true,小于为false
+    //高于为true,低于为false
     bool CompareSymbol(string s1, string s2)
     {
         if (s1 == s2) {
@@ -159,7 +192,7 @@ class Exercise4 {
                 temp = "";
                 //如果在括号内, 则需要将括号信息加到符号字符串中
                 if (bracketCount > 0)
-                    temp += bracketCount + "_";
+                    temp += bracketCount + "&";
                 temp += element;
                 //符号添加到数组
                 targetList.Add(temp);
@@ -169,5 +202,30 @@ class Exercise4 {
         //末尾的数字在foreach中处理不到, 循环结束后处理
         targetList.Add(temp);
     }
+
+    //后序遍历二叉树, 并进行结果计算
+    public float PostOrderCalculator(Exercise4Node theRoot)
+    {
+        float temp = 0f;
+        //检查字符串是否算作数字的正则
+        reg = new Regex("^[0-9]\\.*[0-9]*$");
+        if (theRoot != null) {
+            //如果是数字, 直接返回数字值
+            if (reg.IsMatch(theRoot.Data))
+                temp = float.Parse(theRoot.Data);
+            //如果不是数字, 递归
+            else {
+                if (theRoot.Data.Contains("+"))
+                    temp = PostOrderCalculator(theRoot.Left) + PostOrderCalculator(theRoot.Right);
+                else if (theRoot.Data.Contains("-"))
+                    temp = PostOrderCalculator(theRoot.Left) - PostOrderCalculator(theRoot.Right);
+                else if (theRoot.Data.Contains("*"))
+                    temp = PostOrderCalculator(theRoot.Left) * PostOrderCalculator(theRoot.Right);
+                else
+                    temp = PostOrderCalculator(theRoot.Left) / PostOrderCalculator(theRoot.Right);
+            }
+        }
+        theRoot.DisplayNode();
+        return temp;
+    }
 }
- 

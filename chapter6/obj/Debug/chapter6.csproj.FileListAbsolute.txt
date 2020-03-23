@@ -10,3 +10,15 @@ G:\U3d\C#\chapter1\chapter6\obj\Debug\Digital2Binary.resources
 G:\U3d\C#\chapter1\chapter6\obj\Debug\Form1.resources
 G:\U3d\C#\chapter1\chapter6\obj\Debug\BitwiseCalculator.resources
 G:\U3d\C#\chapter1\chapter6\obj\Debug\CheckPrimeNum.resources
+G:\U3d\CsharpDataStructrueAlgorithm\chapter6\bin\Debug\chapter6.exe.config
+G:\U3d\CsharpDataStructrueAlgorithm\chapter6\bin\Debug\chapter6.exe
+G:\U3d\CsharpDataStructrueAlgorithm\chapter6\bin\Debug\chapter6.pdb
+G:\U3d\CsharpDataStructrueAlgorithm\chapter6\obj\Debug\chapter6.csprojAssemblyReference.cache
+G:\U3d\CsharpDataStructrueAlgorithm\chapter6\obj\Debug\BitwiseCalculator.resources
+G:\U3d\CsharpDataStructrueAlgorithm\chapter6\obj\Debug\CheckPrimeNum.resources
+G:\U3d\CsharpDataStructrueAlgorithm\chapter6\obj\Debug\Digital2Binary.resources
+G:\U3d\CsharpDataStructrueAlgorithm\chapter6\obj\Debug\Form1.resources
+G:\U3d\CsharpDataStructrueAlgorithm\chapter6\obj\Debug\chapter6.csproj.GenerateResource.cache
+G:\U3d\CsharpDataStructrueAlgorithm\chapter6\obj\Debug\chapter6.csproj.CoreCompileInputs.cache
+G:\U3d\CsharpDataStructrueAlgorithm\chapter6\obj\Debug\chapter6.exe
+G:\U3d\CsharpDataStructrueAlgorithm\chapter6\obj\Debug\chapter6.pdb

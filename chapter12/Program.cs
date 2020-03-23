@@ -8,7 +8,9 @@ class Program {
     static void Main()
     {
         Exercise4 e4 = new Exercise4();
-
+        while (true) {
+            e4.CalculateExp();
+        }
 
         //List<int> l = new List<int>();
         //int randomIndex = 0;

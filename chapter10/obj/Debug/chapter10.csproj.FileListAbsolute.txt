@@ -7,3 +7,12 @@ G:\U3d\C#\chapter1\chapter10\obj\Debug\chapter10.exe
 G:\U3d\C#\chapter1\chapter10\obj\Debug\chapter10.pdb
 G:\U3d\C#\chapter1\chapter10\obj\Debug\Glossary.resources
 G:\U3d\C#\chapter1\chapter10\obj\Debug\chapter10.csproj.GenerateResource.cache
+G:\U3d\CsharpDataStructrueAlgorithm\chapter10\bin\Debug\chapter10.exe.config
+G:\U3d\CsharpDataStructrueAlgorithm\chapter10\bin\Debug\chapter10.exe
+G:\U3d\CsharpDataStructrueAlgorithm\chapter10\bin\Debug\chapter10.pdb
+G:\U3d\CsharpDataStructrueAlgorithm\chapter10\obj\Debug\chapter10.csprojAssemblyReference.cache
+G:\U3d\CsharpDataStructrueAlgorithm\chapter10\obj\Debug\Glossary.resources
+G:\U3d\CsharpDataStructrueAlgorithm\chapter10\obj\Debug\chapter10.csproj.GenerateResource.cache
+G:\U3d\CsharpDataStructrueAlgorithm\chapter10\obj\Debug\chapter10.csproj.CoreCompileInputs.cache
+G:\U3d\CsharpDataStructrueAlgorithm\chapter10\obj\Debug\chapter10.exe
+G:\U3d\CsharpDataStructrueAlgorithm\chapter10\obj\Debug\chapter10.pdb

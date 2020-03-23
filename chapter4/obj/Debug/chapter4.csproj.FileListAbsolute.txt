@@ -5,3 +5,10 @@ G:\U3d\C#\chapter1\chapter4\obj\Debug\chapter4.csproj.CoreCompileInputs.cache
 G:\U3d\C#\chapter1\chapter4\obj\Debug\chapter4.exe
 G:\U3d\C#\chapter1\chapter4\obj\Debug\chapter4.pdb
 G:\U3d\C#\chapter1\chapter4\obj\Debug\chapter4.csprojAssemblyReference.cache
+G:\U3d\CsharpDataStructrueAlgorithm\chapter4\bin\Debug\chapter4.exe.config
+G:\U3d\CsharpDataStructrueAlgorithm\chapter4\bin\Debug\chapter4.exe
+G:\U3d\CsharpDataStructrueAlgorithm\chapter4\bin\Debug\chapter4.pdb
+G:\U3d\CsharpDataStructrueAlgorithm\chapter4\obj\Debug\chapter4.csprojAssemblyReference.cache
+G:\U3d\CsharpDataStructrueAlgorithm\chapter4\obj\Debug\chapter4.csproj.CoreCompileInputs.cache
+G:\U3d\CsharpDataStructrueAlgorithm\chapter4\obj\Debug\chapter4.exe
+G:\U3d\CsharpDataStructrueAlgorithm\chapter4\obj\Debug\chapter4.pdb

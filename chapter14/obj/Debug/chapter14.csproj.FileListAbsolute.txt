@@ -1,0 +1,7 @@
+G:\U3d\CsharpDataStructrueAlgorithm\chapter14\bin\Debug\chapter14.exe.config
+G:\U3d\CsharpDataStructrueAlgorithm\chapter14\bin\Debug\chapter14.exe
+G:\U3d\CsharpDataStructrueAlgorithm\chapter14\bin\Debug\chapter14.pdb
+G:\U3d\CsharpDataStructrueAlgorithm\chapter14\obj\Debug\chapter14.csprojAssemblyReference.cache
+G:\U3d\CsharpDataStructrueAlgorithm\chapter14\obj\Debug\chapter14.csproj.CoreCompileInputs.cache
+G:\U3d\CsharpDataStructrueAlgorithm\chapter14\obj\Debug\chapter14.exe
+G:\U3d\CsharpDataStructrueAlgorithm\chapter14\obj\Debug\chapter14.pdb
