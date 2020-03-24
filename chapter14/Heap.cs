@@ -23,8 +23,9 @@ class Heap {
     public void ShowArray()
     {
         foreach (Node item in heapArray) {
-            Console.Write($"[{item.data}]");
+            Console.Write($"{item.data} ");
         }
+        Console.WriteLine();
     }
     //专用于排序的方法
     public void HeapSort()

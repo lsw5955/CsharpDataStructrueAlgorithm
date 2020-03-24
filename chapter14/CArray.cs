@@ -73,7 +73,7 @@ class CArray {
         for (int i = 0; i <= n - 1; i++)
             arr[lbound + i] = tempArray[i];
         //显示输出, 观察过程
-        DisplayElements();
+        //DisplayElements();
     }
     //学第十四章自己加的 方便调试
     public int this[int index] {
@@ -93,7 +93,7 @@ class CArray {
         while (h <= numElements / 3)
             //自增序列的计算公式
             h = h * 3 + 1;
-        Console.WriteLine(h);
+        //Console.WriteLine(h);
         while (h > 0) {
             //每一轮排序从h开始检查, h在若干轮while循环后最终会变成1, 也就是最终一轮循环变成了插入算法
             for (int outer = h; outer <= numElements - 1; outer++) {
@@ -107,7 +107,7 @@ class CArray {
                     inner -= h;
                 }
                 arr[inner] = temp;
-                DisplayElements();
+                //DisplayElements();
             }
             //此处的计算公式与前面计算自增序列的公式是对应的
             h = (h - 1) / 3;
@@ -301,7 +301,128 @@ class CArray {
             }
             //最后一次让位后, inner也减了1, 所以正好指向空出来的位置, 狠狠插入
             arr[inner] = temp;
-            DisplayElements();
+            //DisplayElements();
         }
+    }
+
+    //快速排序算法入口函数
+    public void QSort()
+    {
+        RecQSort(0, numElements - 1);
+    }
+    //快速排序算法递归函数
+    public void RecQSort(int first, int last)
+    {        
+        if (last  <= first)
+            //last<=first时说明已经找到了分割位置
+            return;
+        else {
+            //计算分割点part
+            //int part = this.Partition(first, last);
+            //========如果递归函数中还要调用外部函数, 性能下降极其严重, 所以将上述Partition方法代码移动到了这里面, 性能起飞
+            int pivotVal = arr[first];
+            int theFirst = first;
+            bool okSide;
+            first++;
+            do {
+                okSide = true;
+                while (okSide) {
+                    if (arr[first] > pivotVal)
+                        okSide = false;
+                    else {
+                        first++;
+                        okSide = (first <= last);
+                    }
+                }
+                okSide = true;
+                while (okSide) {
+                    if (arr[last] <= pivotVal)
+                        okSide = false;
+                    else {
+                        last--;
+                        okSide = (first <= last);
+                    }
+                }
+                if (first < last) {
+                    Swap(first, last);
+                    first++;
+                    last--;
+                }
+            } while (first <= last);
+            Swap(theFirst, last);
+            int part = last;
+
+
+            //通过迭代, 分别对part左和右两部分继续进行快速排序
+            RecQSort(first, part - 1);
+            RecQSort(part + 1, last);
+        }
+    }
+    //用于快速排序过程检查元素, 进行交换, 并返回新的分割位置索引
+    public int Partition(int first, int last)
+    {
+        //Console.WriteLine($"===============交换索引{first}到索引{last}之间的元素...===============");
+        //分界值
+        int pivotVal = arr[first];
+        //分界值索引
+        int theFirst = first;
+        //指示是否还需要继续检查元素
+        bool okSide;
+        first++;
+        do {
+            //开始检查last索引的元素了, okSide重置为true, 至少进行一次检查
+            okSide = true;
+            while (okSide) {
+                if (arr[first] > pivotVal)
+                    //如果first索引大于分界值了, 则停止继续移动first
+                    okSide = false;
+                else {
+                    //只要没有找到大于分界值的值, 就继续向右移动first索引
+                    first++;
+                    //first只要小于等于last就可以继续检查
+                    okSide = (first <= last);
+                }
+            }
+
+            //开始检查last索引的元素了, 所以okSide重置为true, 至少进行一次检查
+            okSide = true;
+            while (okSide) {                
+                if (arr[last] <= pivotVal)
+                    //如果last索引小于等于分界值了, 则停止继续移动last
+                    okSide = false;
+                else {
+                    //只要没有找到小于等于分界值的值, 就继续向左移动last索引
+                    last--;
+                    //last只要大于等于first就可以继续检查
+                    okSide = (first <= last);
+                }
+            }
+            if (first < last) {
+                //只要检查一轮后, first在last左侧, 就将它们的值交换
+                //从而向左侧增加了一个小于等于分界值的值, 向右侧增加了一个大于分界值的值
+                Swap(first, last);
+                //显示当前排序状态, 方便观察过程
+                //Console.WriteLine("===交换first与last...===");
+                //DisplayElements();
+                //first向右移动作为新检查起点
+                first++;
+                //last向左移动作为新检查起点
+                last--;
+            }
+            //只要first还没有移动到last右侧, 就说明last索引元素值不一定小于等于分界值, 需要继续检查和交换
+        } while (first <= last);
+        //全部检查完毕后, 将last索引处的元素与本分段首个元素互换, 此时last索引的位置就是一个新的分割点
+        Swap(theFirst, last);
+        //显示当前排序状态, 方便观察过程
+        //Console.WriteLine($"===索引{last}的成为新的分割点!===");
+        //DisplayElements();
+        return last;
+    }
+    //交转指定的两个索引元素的位置
+    public void Swap(int item1, int item2)
+    {
+        int temp = arr[item1];
+        arr[item1] = arr[item2];
+        arr[item2] = temp;
     }
 }
