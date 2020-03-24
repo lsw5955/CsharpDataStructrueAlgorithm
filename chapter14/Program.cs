@@ -3,27 +3,27 @@
 class Program {
     static void Main()
     {
-        CArray nums = new CArray(10);
-        Random rnd = new Random(100);
-        for (int i = 0; i < 10; i++) {
-            nums.Insert(rnd.Next(0, 100));
+        for (int x = 0; x < 3; x++) {
+            int dataCount = 10;
+            Heap heap = new Heap(dataCount);
+            Random rnd = new Random(x);
+            int temp = 0;
+            Console.Write("随机数据为 : ");
+            for (int i = 0; i < dataCount; i++) {
+                temp = rnd.Next(100);
+                Console.Write($"[{temp}]");
+                heap.Insert(temp);
+            }
+            Console.WriteLine();
+            Console.Write("堆当前顺序 : ");
+            heap.ShowArray();
+            Console.WriteLine();
+            Console.Write("堆排序后为 : ");
+            heap.HeapSort();
+            heap.ShowArray();
+            Console.WriteLine();
+            Console.WriteLine("=================");
         }
-        Console.WriteLine("归并排序前: ");
-        nums.DisplayElements();
-        Console.WriteLine("归并排序中...: ");
-        nums.MergeSort();
-        Console.WriteLine("归并排序后: ");
-        nums.DisplayElements();
-        //rnd = new Random(100);
-        //for (int i = 0; i < 10; i++) {
-        //    nums[i]=rnd.Next(0, 100);
-        //}
-        //Console.WriteLine("插入排序前: ");
-        //nums.DisplayElements();
-        //Console.WriteLine("插入排序中...: ");
-        //nums.InsertionSort();
-        //Console.WriteLine("插入排序后: ");
-        //nums.DisplayElements();
         Console.ReadLine();
     }
 }

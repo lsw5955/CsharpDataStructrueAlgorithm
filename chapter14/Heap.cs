@@ -1,22 +1,85 @@
-﻿public class Node {
+﻿using System;
+
+public class Node {
     public int data;
     public Node(int key)
     {
         data = key;
     }
 }
-class CHeap {
-
+class Heap {
     Node[] heapArray;
+    //代表堆的当前数据数量
     int currSize;
+    //代表堆最多可容纳的数据数量
     int maxSize;
-    public CHeap(int size)
+    public Heap(int size)
     {
         currSize = 0;
         maxSize = size;
         heapArray = new Node[maxSize];
     }
+    //显示堆数据
+    public void ShowArray()
+    {
+        foreach (Node item in heapArray) {
+            Console.Write($"[{item.data}]");
+        }
+    }
+    //专用于排序的方法
+    public void HeapSort()
+    {
+        Node temp;
+        for (int i = 0; i < currSize; i++) {
+            temp = heapArray[0];
+            heapArray[0] = heapArray[currSize - 1 - i];
+            heapArray[currSize - 1 - i] = temp;
+            //每次在堆顶将最大值交换到末尾, 然后对其末尾之前的节点进行ShiftDown
+            //下一次依然拿堆顶, 但是交换位置比末尾向前一个位置, 同样的, ShiftDown操作也提前一个位置
+            //如此往复, 最终最大值一个个的被交换到了数组的后方, 而且从后向前是从大到小的顺序, 排序完成
+            ShiftDown(0, currSize - 1 - i);
+        }
+    }
+    //以index为顶点, 到end索引之间形成的子堆, 进行ShiftDown操作
+    void ShiftDown(int index,int unSortCount)
+    {
+        int largerChild;
+        Node top = heapArray[index];
+        //此处是与ShiftDown(int index)方法的唯一不同之处
+        //end变量代替了currSize变量
+        while (index < (unSortCount / 2)) {
+            int leftChild = 2 * index + 1;
+            int rightChild = leftChild + 1;
+            if ((rightChild < unSortCount) && heapArray[leftChild].data < heapArray[rightChild].data)
+                largerChild = rightChild;
+            else
+                largerChild = leftChild;
+            if (top.data >= heapArray[largerChild].data)
+                break;
+            heapArray[index] = heapArray[largerChild];
+            index = largerChild;
+        }
+        heapArray[index] = top;
+    }
 
+    //用于将指定索引的堆节点进行上浮, 从而保障堆结构的正确性
+    public void ShiftUp(int index)
+    {
+        //获得其父节点索引, 公式如下
+        int parent = (index - 1) / 2;
+        //通过index获得一个数组元素, 它是parent的子节点
+        Node bottom = heapArray[index];
+        while ((index > 0) && (heapArray[parent].data < bottom.data)) {
+            //在到达索引0之前, 只要父节点值小于其bottom, 就将父节点下移
+            heapArray[index] = heapArray[parent];
+            index = parent;
+            //然后找到这一轮的父节点的父节点继续比较
+            parent = (parent - 1) / 2;
+        }
+        //while循环结束后, 所有比bottom小的父节点或祖先节点都已经在下移, 将最后下移的索引元素设置为bottm
+        //至此完成了新增堆数据后的堆重构
+        heapArray[index] = bottom;
+    }
     public bool Insert(int key)
     {
         //如果堆满了, 数据插入失败
@@ -31,24 +94,6 @@ class CHeap {
         currSize++;
         return true;
     }
-
-    public void ShiftUp(int index)
-    {
-        //获得其父节点索引, 公式如下
-        int parent = (index - 1) / 2;
-        //通过index获得一个数组元素, 它是parent
-        Node bottom = heapArray[index];        
-        while ((index > 0) && (heapArray[parent].data <bottom.data)) {
-            //在到达索引0之前, 只要父节点值小于其bottom, 就将父节点下移
-            heapArray[index] = heapArray[parent];
-            index = parent;
-            //然后找到这一轮的父节点的父节点继续比较
-            parent = (parent - 1) / 2;
-        }
-        //while循环结束后, 所有比bottom小的父节点或祖先节点都已经在堆上下移, 将最后下移的索引元素设置为bottm
-        //至此完成了新增堆数据后的堆重构
-        heapArray[index] = bottom;
-    }
     //在堆结构中移除数据的方法
     public Node Remove()
     {
@@ -62,9 +107,7 @@ class CHeap {
         //返回被移除的节点对象
         return root;
     }
-    //首先要明确, 这个方法只适用于, 从堆 或 某个子堆 的末尾, 移动了一个节点到index位置的情况
-    //只有满足这个条件, 才能保障可以从index索引, 向下出发, 必定可以找到一条全部都大于index位置节点值的路径
-    //这条路径可能由一个或多个节点组成, index位置的节点在方法执行完毕后, 会成为这条路径的末尾的子节点, 路径中的第一个节点则成为了新的堆顶
+    //从指定索引位置开始向下检查, 确保该索引极其子节点均是大值在上小值在下
     public void ShiftDown(int index)
     {
         int largerChild;

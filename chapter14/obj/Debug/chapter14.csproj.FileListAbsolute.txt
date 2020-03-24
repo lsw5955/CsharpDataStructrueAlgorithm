@@ -5,3 +5,10 @@ G:\U3d\CsharpDataStructrueAlgorithm\chapter14\obj\Debug\chapter14.csprojAssembly
 G:\U3d\CsharpDataStructrueAlgorithm\chapter14\obj\Debug\chapter14.csproj.CoreCompileInputs.cache
 G:\U3d\CsharpDataStructrueAlgorithm\chapter14\obj\Debug\chapter14.exe
 G:\U3d\CsharpDataStructrueAlgorithm\chapter14\obj\Debug\chapter14.pdb
+D:\learnU\CsharpDataStructrueAlgorithm\chapter14\bin\Debug\chapter14.exe.config
+D:\learnU\CsharpDataStructrueAlgorithm\chapter14\bin\Debug\chapter14.exe
+D:\learnU\CsharpDataStructrueAlgorithm\chapter14\bin\Debug\chapter14.pdb
+D:\learnU\CsharpDataStructrueAlgorithm\chapter14\obj\Debug\chapter14.csprojAssemblyReference.cache
+D:\learnU\CsharpDataStructrueAlgorithm\chapter14\obj\Debug\chapter14.csproj.CoreCompileInputs.cache
+D:\learnU\CsharpDataStructrueAlgorithm\chapter14\obj\Debug\chapter14.exe
+D:\learnU\CsharpDataStructrueAlgorithm\chapter14\obj\Debug\chapter14.pdb
